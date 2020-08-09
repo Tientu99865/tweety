@@ -21,7 +21,7 @@
         </div>
 
         {{--        sidebar-right--}}
-        <div class="lg:w-1/6 bg-blue-100 p-4 rounded-lg">
+        <div class="lg:w-1/6 bg-blue-100 p-4 rounded-lg" style="height: fit-content;">
             @include('_friend-list')
         </div>
     </div>

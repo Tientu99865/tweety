@@ -37,11 +37,38 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    //get avatar
     public function getAvatarAttribute(){
         return "https://i.pravatar.cc/40?u=" . $this->email;
     }
 
+
+    //show timeline
     public function timeline(){
-        return Tweet::where('user_id',$this->id)->latest()->get();
+        //include all of the user's tweets
+        // as well as the tweets of everyone
+        //they follow .. in descending order by date
+
+        $friends = $this->follows()->pluck('id');
+
+        return Tweet::whereIn('user_id',$friends)
+            ->orWhere('user_id',$this->id)
+            ->latest()->get();
     }
+
+    public function tweets(){
+        return $this->hasMany(Tweet::class);
+    }
+
+    //create relatetionship
+    public function follow(User $user){
+        return $this->follows()->save($user);
+    }
+
+    //show following
+    public function follows(){
+        return $this->belongsToMany(User::class,'follows','user_id','following_user_id');
+    }
+
+
 }
