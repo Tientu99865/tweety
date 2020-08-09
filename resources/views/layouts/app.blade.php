@@ -30,9 +30,11 @@
         <main class="mx-auto">
             <div class="lg:flex lg:justify-between">
                 {{--        sidebar-left--}}
-                <div class="lg:w-32">
-                    @include('_sidebar-links')
-                </div>
+                @if(auth()->check())
+                    <div class="lg:w-32">
+                        @include('_sidebar-links')
+                    </div>
+                @endif
 
                 {{--content--}}
                 <div class="lg:flex-1 lg:mx-10" style="max-width: 700px">
@@ -42,9 +44,11 @@
                 </div>
 
                 {{--        sidebar-right--}}
-                <div class="lg:w-1/6 bg-blue-100 p-4 rounded-lg" style="height: fit-content;">
-                    @include('_friend-list')
-                </div>
+                @if(auth()->check())
+                    <div class="lg:w-1/6 bg-blue-100 p-4 rounded-lg" style="height: fit-content;">
+                        @include('_friend-list')
+                    </div>
+                @endif
             </div>
         </main>
     </section>
