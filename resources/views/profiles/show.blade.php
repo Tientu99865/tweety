@@ -23,16 +23,25 @@
             </div>
 
             <div class="flex">
-{{--                @can ('edit', $user)--}}
-{{--                {{ $user->path('edit') }}--}}
-                    <a href=""
+                {{--                @can ('edit', $user)--}}
+                {{--                {{ $user->path('edit') }}--}}
+                @can('edit',$user)
+                    <a href="{{$user->path('edit')}}"
                        class="rounded-full border border-gray-300 py-2 px-4 text-black text-xs mr-2"
                     >
                         Edit Profile
                     </a>
-{{--                @endcan--}}
-
-{{--                <x-follow-button :user="$user"></x-follow-button>--}}
+                @endcan
+                {{--                @endcan--}}
+                @unless(current_user()->is($user))
+                    <form action="/profiles/{{$user->name}}/follow" method="POST">
+                        @csrf
+                        <button type="submit" class="bg-blue-500 rounded-full shadow py-2 px-4 text-white text-xs">
+                            {{auth()->user()->following($user) ? 'Unfollow me' : 'Follow me'}}
+                        </button>
+                    </form>
+                @endunless
+                {{--                <x-follow-button :user="$user"></x-follow-button>--}}
             </div>
         </div>
 
