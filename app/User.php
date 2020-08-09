@@ -37,7 +37,7 @@ class User extends Authenticatable
 
     //get avatar
     public function getAvatarAttribute($value){
-        return asset($value);
+        return asset($value ?: '/images/default-avatar.jpeg');
     }
 
     //show timeline
@@ -72,10 +72,10 @@ class User extends Authenticatable
         return $this->belongsToMany(User::class,'follows','user_id','following_user_id');
     }
 
-//    public function getRouteKeyName()
-//    {
-//        return  'name';
-//    }
+    public function setPasswordAttribute($value){
+        //ma hoa mat khau
+        $this->attributes['password'] =  bcrypt($value);
+    }
 
     public function path($append = ''){
         $path = route('profiles',$this->username);
