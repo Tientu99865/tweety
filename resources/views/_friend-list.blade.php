@@ -5,7 +5,7 @@
         <li class="mb-4">
             <div class="flex items-center text-sm">
                 <img
-                    src="https://picsum.photos/40"
+                    src="https://picsum.photos/50"
                     alt=""
                     class="rounded-full mr-2"
                 >
