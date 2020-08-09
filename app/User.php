@@ -39,7 +39,7 @@ class User extends Authenticatable
 
     //get avatar
     public function getAvatarAttribute(){
-        return "https://i.pravatar.cc/40?u=" . $this->email;
+        return "https://i.pravatar.cc/290?u=" . $this->email;
     }
 
 
@@ -56,6 +56,7 @@ class User extends Authenticatable
             ->latest()->get();
     }
 
+    //show user's tweets
     public function tweets(){
         return $this->hasMany(Tweet::class);
     }
@@ -68,6 +69,11 @@ class User extends Authenticatable
     //show following
     public function follows(){
         return $this->belongsToMany(User::class,'follows','user_id','following_user_id');
+    }
+
+    public function getRouteKeyName()
+    {
+        return  'name';
     }
 
 

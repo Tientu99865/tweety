@@ -28,7 +28,24 @@
     </section>
     <section class="px-8">
         <main class="mx-auto">
-            @yield('content')
+            <div class="lg:flex lg:justify-between">
+                {{--        sidebar-left--}}
+                <div class="lg:w-32">
+                    @include('_sidebar-links')
+                </div>
+
+                {{--content--}}
+                <div class="lg:flex-1 lg:mx-10" style="max-width: 700px">
+
+                    @yield('content')
+
+                </div>
+
+                {{--        sidebar-right--}}
+                <div class="lg:w-1/6 bg-blue-100 p-4 rounded-lg" style="height: fit-content;">
+                    @include('_friend-list')
+                </div>
+            </div>
         </main>
     </section>
 </div>
