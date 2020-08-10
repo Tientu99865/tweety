@@ -23,7 +23,7 @@
 <div id="app">
     <section class="px-8 py-4 mb-6">
         <header class="container mx-auto">
-            <img src="images/logo/logo.svg" alt="logo">
+            <a href="{{route('home')}}"><img src="images/logo/logo.svg" alt="logo"></a>
         </header>
     </section>
     <section class="px-8">
@@ -53,5 +53,6 @@
         </main>
     </section>
 </div>
+<script src="http://unpkg.com/turbolinks"></script>
 </body>
 </html>
